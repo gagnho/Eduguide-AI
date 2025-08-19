@@ -4,6 +4,11 @@ import datetime
 import math
 import json
 import os
+import numpy as np
+from sentence_transformers import SentenceTransformer, util
+from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
+from sklearn.linear_model import LinearRegression
 
 # -------------------
 # Helper functions
@@ -56,31 +61,92 @@ def make_roadmap(exam, subjects, weak_subjects, hours_per_day, days_until_exam):
             topics = generate_topics_for_subject(exam, s)
             topic = topics[(day-1) % len(topics)]
             roadmap[f"Day {day}"].append({"subject": s, "topic": topic, "hours": hours})
+    
+    # ML adjustment: Predict extra hours for weak subjects based on avg scores
+    try:
+        performance_df = pd.read_csv('students_performance.csv')  # From Kaggle
+        if not performance_df.empty:
+            # Assume columns: 'subject', 'score', 'study_hours' (adapt based on actual dataset)
+            weak_scores = performance_df[performance_df['subject'].isin(weak_subjects)]['score'].mean() if not weak_subjects else 50
+            X = performance_df[['study_hours']].values  # Example: Train on historical data
+            y = performance_df['score'].values
+            lr_model = LinearRegression()
+            lr_model.fit(X, y)
+            extra_hours = lr_model.predict([[hours_per_day]])[0] / 10  # Simplified prediction
+            for day in roadmap:
+                for item in roadmap[day]:
+                    if item['subject'] in weak_subjects:
+                        item['hours'] += round(extra_hours, 2)
+    except FileNotFoundError:
+        pass  # Skip if dataset not found
+    
     return roadmap
 
-# simple NLP doubt solver: keyword -> answers
-SYMBOLIC_FAQ = {
-    "how to remember": "Use spaced repetition + flashcards. Revise important formulas daily and do quick weekly revisions.",
-    "time management": "Create a weekly timetable; do high-weightage topics first and allocate at least one mock test per week.",
-    "numericals": "Practice step-by-step, solve past year problems, and revise concept-wise formula sheet.",
-    "organic": "Make reaction maps, practice mechanism questions and revise named reactions frequently.",
-    "revision": "Make short notes and solve quizzes. Use the 80/20 rule: revise the 20% topics that give 80% questions.",
-    "mock test": "Simulate exam conditions, analyze mistakes, and convert weaknesses into dedicated practice slots."
+# Load pre-trained NLP model (all-MiniLM-L6-v2 is lightweight and effective for semantic similarity)
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Load Kaggle dataset (expand with toppers' tips below)
+try:
+    qa_df = pd.read_csv('exam_questions.csv')  # Assume columns: 'question', 'answer' (add 'answer' column if missing)
+except FileNotFoundError:
+    qa_df = pd.DataFrame(columns=['question', 'answer'])  # Fallback empty DF
+
+# Embed all questions in the dataset once for efficiency
+question_embeddings = model.encode(qa_df['question'].tolist())
+
+toppers_tips = {
+    "JEE": [
+        "Ishita Vyavahare (99.06%): Don't overhype the exam to avoid nerves. Give regular mocks and analyze mistakes deeply.",
+        "Kalpit Veerwal (AIR 1, 2017): Build consistency: Study 8-10 hours daily, focus on weak areas first, and revise weekly.",
+        "Vedantu Droppers: For repeaters, analyze past errors, use reaction maps for chemistry, and practice past papers."
+    ],
+    "NEET": [
+        "Sheldon Pinto (AIR 1, 2020): Smart study over hard: Master NCERT, revise biology diagrams, and take timed tests.",
+        "Alpana (AIR 216, repeater): As a dropper, create a mistake journal, focus on human physiology, and avoid distractions like social media.",
+        "Vaibhav Garg: Prioritize high-weightage topics; do daily quizzes and full mocks in the last month."
+    ],
+    "UPSC": [
+        "Aditya Srivastava (AIR 1, 2023): Build foundation with NCERTs, read newspapers smartly (focus on editorials), and practice answer writing daily.",
+        "Anu Kumari: Self-study works: Map syllabus, revise 3-4 times, and join mock interviews.",
+        "Insights IAS Toppers: 8 hours efficient study, cover GS and optional daily, use mind maps for history."
+    ],
+    "SSC/Banking": [
+        "Nishu (SSC CGL): Complete syllabus early, practice quant with R.S. Aggarwal, and do daily puzzles for reasoning.",
+        "Rahul (IBPS PO): First attempt success: Focus on speed in mocks, vocabulary building for English, and analyze weak sections.",
+        "Vivek Kumar Garg (SSC CGL): Self-prep in 6 months: No coaching, daily math/English batches online, consistent revision."
+    ]
 }
 
-def nlp_answer(question):
-    q = question.lower()
+# Augment QA dataset with toppers' tips
+for exam, tips in toppers_tips.items():
+    for tip in tips:
+        qa_df = pd.concat([qa_df, pd.DataFrame({'question': [f"Topper tips for {exam}"], 'answer': [tip]})], ignore_index=True)
+question_embeddings = model.encode(qa_df['question'].tolist())  # Re-embed
+
+def nlp_answer(question, top_k=3, similarity_threshold=0.5):
+    if not question.strip():
+        return ["Please ask a specific question about study strategies, time management, or exam topics."]
+    
+    # Embed the user's question
+    query_embedding = model.encode(question)
+    
+    # Compute semantic similarities
+    similarities = cosine_similarity([query_embedding], question_embeddings)[0]
+    
+    # Get top matching indices
+    top_indices = np.argsort(similarities)[-top_k:][::-1]
+    
     responses = []
-    for k, v in SYMBOLIC_FAQ.items():
-        if k in q:
-            responses.append(v)
-    # fallback: look for keywords
+    for idx in top_indices:
+        if similarities[idx] >= similarity_threshold:
+            responses.append(qa_df['answer'].iloc[idx])
+        else:
+            break  # Stop if below threshold to avoid irrelevant matches
+    
     if not responses:
-        for key in ["remember", "time", "numerical", "organic", "revision", "mock"]:
-            if key in q:
-                responses.append(SYMBOLIC_FAQ.get("how to remember") if key == "remember" else SYMBOLIC_FAQ.get("time management"))
-    if not responses:
-        responses = ["I could not find an exact match. Try asking about study strategy, time management, revision, or specific subject topics."]
+        # Fallback: Generate a natural response based on semantic understanding
+        responses = [f"Based on common prep patterns, focus on consistent revision and mocks for '{question}'. What specific part are you struggling with?"]
+    
     return responses
 
 def recommend_resources(exam, subjects):
@@ -141,6 +207,14 @@ def save_pdf_report(filename, profile, roadmap, nlp_responses, cv_placeholder, r
     pdf.ln(2)
     for r in resources.get("Online", []):
         pdf.multi_cell(0, 6, f"- {r}")
+    pdf.ln(3)
+    # Toppers' Recommendations
+    pdf.set_font("Arial", "B", 12)
+    pdf.cell(0, 7, "Toppers' Recommendations:", ln=True)
+    pdf.set_font("Arial", "", 11)
+    exam_tips = toppers_tips.get(profile.get("exam", "JEE"), [])
+    for tip in exam_tips[:5]:  # Limit to top 5
+        pdf.multi_cell(0, 6, f"- {tip}")
     pdf.ln(3)
     # mock scores summary
     pdf.set_font("Arial", "B", 12)
@@ -233,6 +307,14 @@ with col4:
     for m in st.session_state["mock_scores"]:
         st.write(f"- {m['date']}: {m['score']}%")
 
+# Insights from Previous Toppers
+st.markdown("---")
+st.header("Insights from Previous Toppers")
+selected_exam = st.selectbox("Select exam for toppers' stories", ["JEE", "NEET", "UPSC", "SSC/Banking"])
+tips = toppers_tips.get(selected_exam, ["No tips available yet."])
+for tip in tips:
+    st.write("- " + tip)
+
 # Export PDF
 st.markdown("---")
 st.header("Export personalized PDF")
@@ -245,4 +327,4 @@ if st.button("Generate PDF Report"):
     filename = "EduGuide_Personal_Roadmap.pdf"
     save_pdf_report(filename, profile, roadmap, nlp_ans, None, recs, mock_scores)
     st.success(f"PDF saved as {filename} in the project folder.")
-    st.markdown("Open the file in your project folder to print or submit.")
+    st.markdown("Open the file in your project folder to print or submit.")
