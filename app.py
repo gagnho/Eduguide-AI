@@ -162,7 +162,7 @@ def save_pdf_report(filename, profile, roadmap, nlp_responses, cv_placeholder, r
 # -------------------
 st.set_page_config(page_title="EduGuide AI - Smart Exam Mentor", layout="wide")
 st.title("🎯 EduGuide AI — Smart Exam Mentor (Prototype)")
-st.markdown("Personalized roadmaps, simple NLP doubt solver, progress tracker. Educational demo.")
+st.markdown("Personalized roadmaps, doubt solver, progress tracker. Educational demo.")
 
 # Left - profile & plan
 col1, col2 = st.columns([2,1])
@@ -195,7 +195,7 @@ with col1:
                 st.markdown(f"- {item['subject']} — {item['topic']} ({item['hours']} hrs)")
 
 with col2:
-    st.header("Doubt Solver (NLP)")
+    st.header("Doubt Solver")
     question = st.text_area("Ask a study question (e.g. 'How to manage time for JEE?')", height=120)
     if st.button("Get Suggestion"):
         if question.strip() == "":
@@ -247,3 +247,4 @@ if st.button("Generate PDF Report"):
     save_pdf_report(filename, profile, roadmap, nlp_ans, None, recs, mock_scores)
     st.success(f"PDF saved as {filename} in the project folder.")
     st.markdown("Open the file in your project folder to print or submit.")
+
