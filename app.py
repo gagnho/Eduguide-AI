@@ -462,24 +462,25 @@ def nlp_answer(question):
     return responses
 
 def recommend_resources(exam, subjects=None):
+    # Core data
     rec = {
         "JEE": {
             "Books": [
                 "H.C. Verma – Concepts of Physics Vol 1 & 2",
-                "I.E. Irodov – Problems in General Physics (for practice)",
-                "DC Pandey / Physics Galaxy by Ashish Arora Sir (for best theory)",
+                "I.E. Irodov – Problems in General Physics",
+                "DC Pandey / Physics Galaxy by Ashish Arora",
                 "O.P. Tandon – Physical & Organic Chemistry",
                 "VK Jaiswal - Problems in Inorganic Chemistry",
-                "Vikas Gupta and Pankaj Joshi - Black Book for JEE Mathematics",
+                "Vikas Gupta & Pankaj Joshi - Black Book for JEE Mathematics",
                 "Pradeep Chemistry (for basics)",
                 "M.S. Chauhan – Organic Chemistry",
-                "R.D. Sharma (for basics) / Cengage (Advanced Practice) / Arihant – Mathematics"
+                "R.D. Sharma / Cengage / Arihant – Mathematics"
             ],
             "Online Platforms": [
                 "NTA Abhyas App (free mock tests)",
                 "Testbook App (free mock tests)",
                 "Khan Academy (concept clarity)",
-                "Unacademy / Vedantu (live classes & doubt solving)",
+                "Unacademy / Vedantu (live classes & doubts)",
                 "Past Year JEE Main + Advanced Papers"
             ],
             "Tips": [
@@ -492,16 +493,16 @@ def recommend_resources(exam, subjects=None):
         "NEET": {
             "Books": [
                 "NCERT Biology (11th & 12th – absolute must!)",
-                "Trueman’s Biology (for detailed practice)",
+                "Trueman’s Biology",
                 "O.P. Tandon – Physical & Organic Chemistry",
-                "MTG NCERT at Your Fingertips – Biology, Physics, Chemistry",
-                "Concepts of Physics – H.C. Verma (for basics)"
+                "MTG NCERT at Your Fingertips",
+                "Concepts of Physics – H.C. Verma"
             ],
             "Online Platforms": [
                 "Embibe (mock tests + analysis)",
                 "Aakash / Allen digital modules",
-                "BYJU'S & Khan Academy (concept videos)",
-                "Past Year NEET Papers (at least last 10 years)"
+                "BYJU'S & Khan Academy (videos)",
+                "Past Year NEET Papers (last 10 years)"
             ],
             "Tips": [
                 "Do NCERT Biology line by line.",
@@ -515,9 +516,9 @@ def recommend_resources(exam, subjects=None):
                 "NCERTs (6th–12th History, Geography, Polity, Economics, Science)",
                 "Laxmikanth – Indian Polity",
                 "Spectrum – Modern Indian History",
-                "Indian Economy by Ramesh Singh",
-                "Environment by Shankar IAS Academy",
-                "Indian Year Book (selective reading)"
+                "Indian Economy – Ramesh Singh",
+                "Environment – Shankar IAS",
+                "Indian Year Book (selective)"
             ],
             "Online Platforms": [
                 "PRS India (Legislative updates)",
@@ -526,9 +527,9 @@ def recommend_resources(exam, subjects=None):
                 "Rajya Sabha TV / Sansad TV debates"
             ],
             "Tips": [
-                "Revise NCERTs thoroughly before moving to advanced sources.",
-                "Focus on Current Affairs daily (The Hindu/Indian Express).",
-                "Practice Mains answer writing + Previous year Prelims MCQs."
+                "Revise NCERTs thoroughly before advanced books.",
+                "Focus on daily current affairs.",
+                "Practice Mains answer writing + Prelims MCQs."
             ]
         },
 
@@ -543,60 +544,66 @@ def recommend_resources(exam, subjects=None):
             "Online Platforms": [
                 "Testbook / Adda247 (mocks + quizzes)",
                 "Gradeup (BYJU'S Exam Prep)",
-                "Oliveboard (for Banking aspirants)",
+                "Oliveboard (for Banking)",
                 "Unacademy SSC Courses"
             ],
             "Tips": [
                 "Focus on accuracy + speed with timer-based practice.",
-                "Daily current affairs & GK for SSC CGL/CHSL.",
+                "Daily current affairs & GK for SSC exams.",
                 "Take at least 1 mock daily in exam season."
             ]
         },
 
         "Olympiads": {
             "Books": [
-                "Mathematics: Problem-Solving Strategies (Arthur Engel), Challenge and Thrill of Pre-College Mathematics",
-                "Physics: I.E. Irodov – Problems in General Physics, Pathfinder (IAPT), University Physics by Young & Freedman",
-                "Chemistry: Atkins Physical Chemistry, Clayden Organic Chemistry, Inorganic by J.D. Lee",
+                "Math: Problem-Solving Strategies (Arthur Engel), Challenge and Thrill of Pre-College Mathematics",
+                "Physics: I.E. Irodov, Pathfinder (IAPT), University Physics – Young & Freedman",
+                "Chemistry: Atkins Physical Chemistry, Clayden Organic Chemistry, Inorganic – J.D. Lee",
                 "Astronomy: Foundations of Astrophysics – Ryden & Peterson, Astronomy: Principles and Practice – Roy & Clarke",
-                "Biology: Campbell Biology, Lehninger Biochemistry, Olympiad Biology Problem Books (IAPT)"
+                "Biology: Campbell Biology, Lehninger Biochemistry, Olympiad Problem Books (IAPT)"
             ],
             "Online Platforms": [
                 "IAPT Official Website (Indian Olympiads)",
-                "Brilliant.org (Olympiad style problem solving)",
-                "Art of Problem Solving (AoPS) – Olympiad Math",
-                "Olympiads School / Physics Olympiad (IPhO training materials)",
-                "HBCSE Olympiad resources (official past papers)"
+                "Brilliant.org (Olympiad style problems)",
+                "Art of Problem Solving (AoPS) – Math",
+                "Olympiads School / Physics Olympiad training",
+                "HBCSE Olympiad past papers"
             ],
             "Tips": [
-                "Solve past year Olympiad papers (NSEP, NSEC, NSEB, NSEA, RMO, INMO etc.).",
+                "Solve past year Olympiad papers (NSE, INMO, etc.).",
                 "Focus on deep understanding, not rote learning.",
-                "Join problem-solving groups and discuss tough problems.",
-                "Practice experimental/lab-based questions for Science Olympiads.",
-                "Follow the roadmap: NSE → INO → OCSC → International Olympiad (IPhO/IMO/IChO/IBO/IAO)."
+                "Join problem-solving groups & discussions.",
+                "Practice experimental/lab-based Science questions.",
+                "Roadmap: NSE → INO → OCSC → International Olympiad"
             ]
         }
     }
 
-    # normalize keys (case-insensitive)
-    exam_key = None
-    for key in rec:
-        if key.lower() == exam.lower():
-            exam_key = key
-            break
-
+    # normalize exam name (case-insensitive)
+    exam_key = next((k for k in rec if k.lower() == exam.lower()), None)
     if not exam_key:
-        return {}  # invalid exam
+        return {}
 
+    # mapping for display labels
+    label_map = {
+        "Books": "Books / Offline",
+        "Online Platforms": "Online resources",
+        "Tips": "Tips"
+    }
+
+    data = rec[exam_key]
+
+    # apply subject filter if provided
     if subjects:
         result = {}
         for sub in subjects:
-            for key in rec[exam_key]:
-                if key.lower() == sub.lower():
-                    result[key] = rec[exam_key][key]
+            for k, v in data.items():
+                if k.lower() == sub.lower():
+                    result[label_map.get(k, k)] = v
         return {exam_key: result}
 
-    return rec[exam_key]
+    # otherwise, return full mapped dictionary
+    return {exam_key: {label_map.get(k, k): v for k, v in data.items()}}
 
     # If subjects are given, filter recommendations
     base = rec.get(exam, {"Books": ["Standard Textbooks"], "Online Platforms": ["General resources"], "Tips": ["Stay consistent & practice regularly."]})
@@ -779,6 +786,7 @@ if st.button("Generate PDF Report"):
     save_pdf_report(filename, profile, roadmap, nlp_ans, None, recs, mock_scores)
     st.success(f"PDF saved as {filename} in the project folder.")
     st.markdown("Open the file in your project folder to print or submit.")
+
 
 
 
