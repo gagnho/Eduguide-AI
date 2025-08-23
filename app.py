@@ -467,13 +467,13 @@ def recommend_resources(exam, subjects=None):
             "Books": [
                 "H.C. Verma – Concepts of Physics Vol 1 & 2",
                 "I.E. Irodov – Problems in General Physics (for practice)",
-                "DC pandey / Physics Galaxy by Ashish Arora Sir (for best theory)",
+                "DC Pandey / Physics Galaxy by Ashish Arora Sir (for best theory)",
                 "O.P. Tandon – Physical & Organic Chemistry",
                 "VK Jaiswal - Problems in Inorganic Chemistry",
-                "Vikas Gupta and Pankaj Joshi - Black Book for JEE mathematics"
-                "Pradeep Chemistry (for basics)"
+                "Vikas Gupta and Pankaj Joshi - Black Book for JEE Mathematics",
+                "Pradeep Chemistry (for basics)",
                 "M.S. Chauhan – Organic Chemistry",
-                "R.D. Sharma(for basics) / Cengage(Advanced Practice) / Arihant – Mathematics"
+                "R.D. Sharma (for basics) / Cengage (Advanced Practice) / Arihant – Mathematics"
             ],
             "Online Platforms": [
                 "NTA Abhyas App (free mock tests)",
@@ -550,10 +550,10 @@ def recommend_resources(exam, subjects=None):
                 "Focus on accuracy + speed with timer-based practice.",
                 "Daily current affairs & GK for SSC CGL/CHSL.",
                 "Take at least 1 mock daily in exam season."
-           ]
+            ]
         },
-                        
-        "Olympiads" : {
+
+        "Olympiads": {
             "Books": [
                 "Mathematics: Problem-Solving Strategies (Arthur Engel), Challenge and Thrill of Pre-College Mathematics",
                 "Physics: I.E. Irodov – Problems in General Physics, Pathfinder (IAPT), University Physics by Young & Freedman",
@@ -575,9 +575,15 @@ def recommend_resources(exam, subjects=None):
                 "Practice experimental/lab-based questions for Science Olympiads."
             ]
         }
-
     }
-    
+
+    # return logic
+    if exam not in rec:
+        return {}
+    if subjects:
+        return {exam: {sub: rec[exam][sub] for sub in subjects if sub in rec[exam]}}
+    return rec[exam]
+
     # If subjects are given, filter recommendations
     base = rec.get(exam, {"Books": ["Standard Textbooks"], "Online Platforms": ["General resources"], "Tips": ["Stay consistent & practice regularly."]})
     
@@ -759,6 +765,7 @@ if st.button("Generate PDF Report"):
     save_pdf_report(filename, profile, roadmap, nlp_ans, None, recs, mock_scores)
     st.success(f"PDF saved as {filename} in the project folder.")
     st.markdown("Open the file in your project folder to print or submit.")
+
 
 
 
