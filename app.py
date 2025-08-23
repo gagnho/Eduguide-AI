@@ -572,17 +572,31 @@ def recommend_resources(exam, subjects=None):
                 "Solve past year Olympiad papers (NSEP, NSEC, NSEB, NSEA, RMO, INMO etc.).",
                 "Focus on deep understanding, not rote learning.",
                 "Join problem-solving groups and discuss tough problems.",
-                "Practice experimental/lab-based questions for Science Olympiads."
+                "Practice experimental/lab-based questions for Science Olympiads.",
+                "Follow the roadmap: NSE → INO → OCSC → International Olympiad (IPhO/IMO/IChO/IBO/IAO)."
             ]
         }
     }
 
-    # return logic
-    if exam not in rec:
-        return {}
+    # normalize keys (case-insensitive)
+    exam_key = None
+    for key in rec:
+        if key.lower() == exam.lower():
+            exam_key = key
+            break
+
+    if not exam_key:
+        return {}  # invalid exam
+
     if subjects:
-        return {exam: {sub: rec[exam][sub] for sub in subjects if sub in rec[exam]}}
-    return rec[exam]
+        result = {}
+        for sub in subjects:
+            for key in rec[exam_key]:
+                if key.lower() == sub.lower():
+                    result[key] = rec[exam_key][key]
+        return {exam_key: result}
+
+    return rec[exam_key]
 
     # If subjects are given, filter recommendations
     base = rec.get(exam, {"Books": ["Standard Textbooks"], "Online Platforms": ["General resources"], "Tips": ["Stay consistent & practice regularly."]})
@@ -765,6 +779,7 @@ if st.button("Generate PDF Report"):
     save_pdf_report(filename, profile, roadmap, nlp_ans, None, recs, mock_scores)
     st.success(f"PDF saved as {filename} in the project folder.")
     st.markdown("Open the file in your project folder to print or submit.")
+
 
 
 
