@@ -425,8 +425,8 @@ SYMBOLIC_FAQ = {
     "how to avoid burnout": "Don’t overstudy without breaks. Take small hobbies/exercise breaks daily. Sleep at least 6–7 hrs. Remember, long-term consistency beats one-day overwork.",
     "what to do one day before exam": "Revise only short notes & formula sheets. Don’t start new topics. Sleep well. Keep all essentials (admit card, pens) ready at night. Stay calm and confident.",
     "how to attempt exam paper": "Start with your strongest section. Don’t get stuck—mark and move. Keep last 10 mins for review. Maintain accuracy in first attempt, speed in second.",
-    "what to do after a bad mock test": "Don’t panic. Mocks are for learning, not judging. Focus on what went wrong—concepts, silly mistakes, or time management. Correct them before next test."
-    "what is jee preparation roadmap": "Start with NCERT, move to standard books like HC Verma (Physics), RD Sharma (Maths), and N Awasthi (Chemistry). Practice PYQs and give mock tests.",
+    "what to do after a bad mock test": "Don’t panic. Mocks are for learning, not judging. Focus on what went wrong—concepts, silly mistakes, or time management. Correct them before next test." ,
+    "what is jee preparation roadmap": "Always start with the basics and lectures. If you do not go to some coaching , watch  lectures first, solve questions after watching every lecture. Then if you have time left, start solving other resources. " ,
     "how to prepare for upsc": "Begin with NCERTs for all subjects (6th–12th), move to standard books (Laxmikanth for Polity, Spectrum for History, GC Leong for Geography, etc.). Practice answer writing and revise current affairs daily.",
     "what is olympiad roadmap": """The Olympiad journey (for Physics, Chemistry, Maths, Biology) generally follows these stages:
 
@@ -759,6 +759,7 @@ if st.button("Generate PDF Report"):
     save_pdf_report(filename, profile, roadmap, nlp_ans, None, recs, mock_scores)
     st.success(f"PDF saved as {filename} in the project folder.")
     st.markdown("Open the file in your project folder to print or submit.")
+
 
 
 
