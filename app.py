@@ -547,7 +547,7 @@ def recommend_resources(exam, subjects):
         "Mrunal (Economy & Budget/Survey videos)",
         "IAS Baba Daily Quiz & TLP program",
         "Shankar IAS Environment Notes"
-        
+        }
     ],
         "SSC/Banking": {
 "Global": [
@@ -756,6 +756,7 @@ if st.button("Generate PDF Report"):
     save_pdf_report(filename, profile, roadmap, nlp_ans, None, recs, mock_scores)
     st.success(f"PDF saved as {filename} in the project folder.")
     st.markdown("Open the file in your project folder to print or submit.")
+
 
 
 
