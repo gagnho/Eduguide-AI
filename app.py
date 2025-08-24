@@ -615,6 +615,7 @@ def recommend_resources(exam, subjects):
         "Gradeup PDF notes"
     ]
     }
+    }
     base = rec.get(exam, {"Global": ["Standard Textbooks"], "Online": ["Online resources"]})
     return base
 
@@ -759,6 +760,7 @@ if st.button("Generate PDF Report"):
     save_pdf_report(filename, profile, roadmap, nlp_ans, None, recs, mock_scores)
     st.success(f"PDF saved as {filename} in the project folder.")
     st.markdown("Open the file in your project folder to print or submit.")
+
 
 
 
