@@ -88,7 +88,6 @@ def generate_topics_for_subject(exam, subject):
     "Trigonometry",
     "Mathematical Reasoning"
 ]
-
         },
         "NEET": {
 "Physics": [
@@ -266,61 +265,6 @@ def generate_topics_for_subject(exam, subject):
     "Statement–Assumption",
     "Non-Verbal Reasoning (Figure Classification, Mirror and Water Images, Paper Folding and Cutting, Embedded Figures, Cubes and Dice)"
 ],
-        "Olympiads": {
-"Mathematics": [
-    "Number Theory",
-    "Combinatorics",
-    "Geometry (Euclidean, Coordinate, Vectors)",
-    "Algebra (Polynomials, Inequalities, Equations)",
-    "Functional Equations",
-    "Sequences and Series",
-    "Probability and Statistics",
-    "Trigonometry",
-    "Mathematical Induction",
-    "Inequalities (Cauchy, AM-GM, Hölder, Jensen etc.)",
-    "Graph Theory and Logic (basic)"
-],
-
-"Physics": [
-    "Mechanics (Newtonian, Rotational, Rigid body)",
-    "Oscillations and Waves",
-    "Fluid Mechanics",
-    "Electrostatics and Current Electricity",
-    "Magnetism and Electromagnetic Induction",
-    "Optics (Wave + Ray)",
-    "Modern Physics (Relativity, Quantum basics)",
-    "Thermodynamics & Kinetic Theory",
-    "Advanced Problem Solving (IPhO level)"
-],
-
-"Chemistry": [
-    "Physical Chemistry (Thermodynamics, Chemical Kinetics, Electrochemistry)",
-    "Inorganic Chemistry (Periodic properties, Coordination Compounds, Qualitative Analysis)",
-    "Organic Chemistry (Reaction Mechanisms, Named Reactions, Stereochemistry)",
-    "Spectroscopy and Structure Determination",
-    "Environmental Chemistry",
-    "Practical Chemistry and Lab Techniques"
-],
-
-"Astronomy": [
-    "Celestial Mechanics (Kepler’s laws, Orbits, Gravitation)",
-    "Astronomical Instruments (Telescopes, CCDs, Spectroscopy)",
-    "Stellar Physics (Life cycle of stars, HR diagram)",
-    "Cosmology (Big Bang, Expansion, Dark Matter/Energy basics)",
-    "Astrophysics (Radiation laws, Doppler effect, Blackbody radiation)",
-    "Coordinate Systems in Astronomy (Equatorial, Horizontal, Ecliptic)"
-],
-
-"Biology": [
-    "Cell Biology and Biochemistry",
-    "Plant Physiology",
-    "Human Physiology",
-    "Genetics and Evolution",
-    "Ecology and Biosphere",
-    "Ethology (Animal Behavior)",
-    "Applied Biology (Biotech, Immunology, Microbiology)"
-]
-        },
 
 "English": [
     "Reading Comprehension",
@@ -395,7 +339,7 @@ SYMBOLIC_FAQ = {
     "how to study NCERT effectively": "Underline key points, make margin notes, and solve all NCERT questions (including examples). For NEET, NCERT Biology line-by-line is non-negotiable. For UPSC/SSC, NCERT builds base for History, Geography, Science.",
     "how to improve in numericals": "Break problems into steps instead of rushing. Write given data properly, identify the formula, and solve systematically. Practice past year questions daily, and keep a formula sheet next to you while revising.",
     "how to master organic chemistry": "Focus on reaction mechanisms rather than mugging up. Make a flowchart for each reagent and its behavior. Revise named reactions frequently, and solve lots of mechanism-based questions to develop intuition.",
-    "best revision strategy before exams": "Follow the 80/20 rule: revise high-weightage topics first. Use short notes and highlight mistakes from mock tests. Daily mini-revisions + weekly full-length revisions are key for long-term memory.",
+    "revision strategy before exams": "Follow the 80/20 rule: revise high-weightage topics first. Use short notes and highlight mistakes from mock tests. Daily mini-revisions + weekly full-length revisions are key for long-term memory.",
     "mock test strategy": "Attempt under real exam conditions. Don’t panic if score is low—analyze mistakes, mark weak topics, and revise them immediately. Keep an error logbook so you never repeat the same mistake.",
     "how to avoid silly mistakes": "Always underline key words in the question. Double-check units, signs, and data before finalizing answers. Practice solving slowly at first, then build speed once accuracy is developed.",
     "how to increase speed in exams": "Use a timer while practicing. Develop shortcuts for repetitive calculations. Avoid getting stuck on one question; mark and move. Solve easy ones first, then return to tough ones.",
@@ -425,24 +369,7 @@ SYMBOLIC_FAQ = {
     "how to avoid burnout": "Don’t overstudy without breaks. Take small hobbies/exercise breaks daily. Sleep at least 6–7 hrs. Remember, long-term consistency beats one-day overwork.",
     "what to do one day before exam": "Revise only short notes & formula sheets. Don’t start new topics. Sleep well. Keep all essentials (admit card, pens) ready at night. Stay calm and confident.",
     "how to attempt exam paper": "Start with your strongest section. Don’t get stuck—mark and move. Keep last 10 mins for review. Maintain accuracy in first attempt, speed in second.",
-    "what to do after a bad mock test": "Don’t panic. Mocks are for learning, not judging. Focus on what went wrong—concepts, silly mistakes, or time management. Correct them before next test." ,
-    "what is jee preparation roadmap": "Always start with the basics and lectures. If you do not go to some coaching , watch  lectures first, solve questions after watching every lecture. Then if you have time left, start solving other resources. " ,
-    "how to prepare for upsc": "Begin with NCERTs for all subjects (6th–12th), move to standard books (Laxmikanth for Polity, Spectrum for History, GC Leong for Geography, etc.). Practice answer writing and revise current affairs daily.",
-    "what is olympiad roadmap": """The Olympiad journey (for Physics, Chemistry, Maths, Biology) generally follows these stages:
-
-1️⃣ **NSE (National Standard Examination)** – Conducted by IAPT (Physics, Chemistry, Biology, Astronomy) or INMO for Mathematics.  
-   ↪ Top ~300 students qualify for next stage.
-
-2️⃣ **INO (Indian National Olympiad)** – Subject-specific (INPhO, INChO, INBO, INAO, INMO).  
-   ↪ Around 35 students per subject are selected.
-
-3️⃣ **OCSC (Orientation-Cum-Selection Camp)** – A rigorous camp at HBCSE, Mumbai.  
-   ↪ Top 4–5 students per subject are chosen for the international team.
-
-4️⃣ **IPhO / IChO / IBO / IMO / IAO** – International Olympiads.  
-   ↪ Represent India at the global level.
-
-👉 Pro-tip: Along the way, focus on **NSE → INO → OCSC → IPhO/IChO/IMO/IBO**, while strengthening fundamentals (NCERT + Olympiad-specific books like HC Verma for Physics, OP Tandon for Chemistry, etc.).""",
+    "what to do after a bad mock test": "Don’t panic. Mocks are for learning, not judging. Focus on what went wrong—concepts, silly mistakes, or time management. Correct them before next test."
 }
 
 
@@ -461,56 +388,234 @@ def nlp_answer(question):
         responses = ["I could not find an exact match. Try asking about study strategy, time management, revision, or specific subject topics."]
     return responses
 
-def recommend_resources(exam, subjects): 
- rec = { 
-     "JEE": { 
-       "Global": ["H.C. Verma (Physics)", "O.P. Tandon (Chemistry)", "R.D. Sharma (Maths)"],
-       "Online": ["Khan Academy", "NTA/JEE official resources", "Past year question papers"] 
-     }, 
-     "NEET": { 
-         "Global": ["NCERT Biology", "O.P. Tandon (Chemistry)", "Concepts of Physics"], 
-         "Online": ["Embibe", "BYJU'S (concept videos)", "Past year papers"] 
-     }, 
-     "UPSC": {
-         "Global": ["NCERTs (History/Geography)", "Laxmikanth (Polity)", "Indian Year Book"], 
-         "Online": ["PRS India", "PIB", "ClearIAS"] 
-     }, 
-     "SSC/Banking": { 
-         "Global": ["Quantitative Aptitude (R.S. Aggarwal)", "Reasoning (R.S. Aggarwal)", "Wren & Martin (English)"], 
-         "Online": ["Gradeup", "Unacademy", "Test series"] 
-     } 
- } 
-base = rec.get(exam, {"Global": ["Standard Textbooks"], "Online": ["Online resources"]})
-return base
+def recommend_resources(exam, subjects):
+    rec = {
+        "JEE": {
+    "Global": [
+        # Physics
+        "Concepts of Physics – H.C. Verma (Vol 1 & 2)",
+        "Understanding Physics series – D.C. Pandey (Mechanics, Waves & Thermodynamics, Electromagnetism, Optics & Modern Physics)",
+        "Problems in General Physics – I.E. Irodov (for advanced practice)",
+        "Fundamentals of Physics – Resnick, Halliday & Walker",
 
-# Function to get resources based on exam name and optional subjects
-def get_resources(exam, subjects=None):
-    # Normalize exam name (case-insensitive)
-    exam_key = next((k for k in rec if k.lower() == exam.lower()), None)
-    if not exam_key:
-        return {}
+        # Chemistry
+        "NCERT Chemistry (11th & 12th) – Must-read for basics",
+        "Physical Chemistry – O.P. Tandon / P. Bahadur",
+        "Organic Chemistry – Morrison & Boyd (reference), Solomon & Fryhle (detailed concepts)",
+        "Concise Inorganic Chemistry – J.D. Lee (Indian edition)",
+        "Modern ABC Chemistry (for school + competitive balance)",
 
-    # Mapping for display labels
-    label_map = {
-        "Books": "Books / Offline",
-        "Online Platforms": "Online resources",
-        "Tips": "Tips"
+        # Mathematics
+        "Mathematics for Class 11 & 12 – R.D. Sharma (basics)",
+        "Cengage Maths series (Algebra, Calculus, Trigonometry, Vectors & 3D, Coordinate Geometry)",
+        "Problems in Calculus of One Variable – I.A. Maron",
+        "Higher Algebra – Hall & Knight",
+        "Trigonometry & Coordinate Geometry – S.L. Loney",
+        "Objective Mathematics – R.D. Sharma (for MCQs)"
+    ],
+
+    "Online": [
+        # Free Platforms
+        "NTA Abhyas App (free JEE mock tests)",
+        "NTA/JEE Main & Advanced official question papers & sample tests",
+        "Khan Academy (Maths + Physics basics)",
+        "MIT OpenCourseWare (Physics concepts, optional advanced)",
+
+        # Paid / Structured Platforms
+        "Unacademy JEE (courses + live classes)",
+        "Vedantu JEE",
+        "Allen Digital / FIITJEE Online platforms",
+        "Resonance DPPs & Test Series",
+        "Physics Wallah (PW) Lectures & Modules",
+
+        # Problem Practice
+        "Previous Year JEE Main & Advanced Papers (must do at least last 15 years)",
+        "Arihant 40 Years JEE Advanced PYQs",
+        "MTG JEE Main Chapterwise PYQs",
+        "Brilliant.org (for conceptual puzzles + maths practice)"
+    ]
+}
+
+        },
+        "NEET": {
+    "Global": [
+        # Biology
+        "NCERT Biology Class 11 & 12 (absolute must, 70–80% of paper is directly based)",
+        "Trueman’s Elementary Biology Vol 1 & 2",
+        "Objective Biology – Dinesh",
+        "MTG NCERT at Your Fingertips (Biology)",
+
+        # Chemistry
+        "NCERT Chemistry Class 11 & 12",
+        "Physical Chemistry – O.P. Tandon",
+        "Organic Chemistry – Morrison & Boyd (reference)",
+        "Concise Inorganic Chemistry – J.D. Lee (for basics, Indian edition preferred)",
+        "MTG NCERT at Your Fingertips (Chemistry)",
+
+        # Physics
+        "Concepts of Physics – H.C. Verma (Vol 1 & 2)",
+        "Physics for NEET – C.P. Singh (objective focus)",
+        "Fundamentals of Physics – Halliday, Resnick & Walker (for concepts)",
+        "Objective Physics – D.C. Pandey (NEET-specific MCQs)"
+    ],
+
+    "Online": [
+        # Free & Official
+        "NTA Abhyas App (NEET mock tests)",
+        "NTA/NEET official past year papers & sample tests",
+        "Khan Academy (Biology & Chemistry basics)",
+
+        # Paid / Structured Platforms
+        "Embibe NEET (AI-based practice & tests)",
+        "BYJU’S NEET (concept videos & mock tests)",
+        "Allen Digital NEET / Aakash BYJU’s (coaching modules)",
+        "Physics Wallah NEET Lectures & Test Series",
+        "Vedantu NEET Programs",
+
+        # Problem Practice
+        "MTG NCERT at Your Fingertips (Biology, Chemistry, Physics)",
+        "MTG NEET Champion (chapterwise + PYQs)",
+        "Arihant 40 Days Crash Course (for revision)",
+        "Previous 15–20 Years NEET Question Papers"
+        
+        },
+        "UPSC": {
+ "Global": [
+        # NCERT Basics (Compulsory for Foundation)
+        "NCERTs Class 6–12 (History, Geography, Polity, Economics, Sociology, Science)",
+        
+        # Polity
+        "Indian Polity – M. Laxmikanth",
+        "Introduction to the Constitution of India – D.D. Basu (reference)",
+        
+        # History
+        "India’s Struggle for Independence – Bipan Chandra",
+        "A Brief History of Modern India – Spectrum (Rajiv Ahir)",
+        "Ancient & Medieval India – R.S. Sharma & Satish Chandra (NCERT + Old NCERT)",
+        
+        # Geography
+        "Certificate Physical & Human Geography – G.C. Leong",
+        "Oxford School Atlas / Orient BlackSwan Atlas",
+        
+        # Economy
+        "Indian Economy – Ramesh Singh",
+        "Economic Survey (latest edition, yearly)",
+        "Budget (Union Budget & Economic Survey highlights)",
+        
+        # Environment & Ecology
+        "Environment – Shankar IAS",
+        "NCERT Biology (for basics of ecology, biodiversity)",
+        
+        # General Studies / Current
+        "India Year Book (latest edition)",
+        "Manorama Yearbook (optional, factual)",
+        "NITI Aayog Reports (selective)",
+        
+        # Ethics (GS-IV)
+        "Lexicon for Ethics, Integrity & Aptitude – Chronicle",
+        "Ethics, Integrity & Aptitude – Subbarao & P.N. Roy Chaudhury",
+        
+        # Essay / Optional
+        "Previous Year UPSC Essay Papers",
+        "IGNOU material (optional references, esp. Sociology/Polity/History)"
+    ],
+
+    "Online": [
+        # Government / Official
+        "PRS India (legislative updates)",
+        "PIB (Press Information Bureau – official releases)",
+        "Rajya Sabha TV / Sansad TV (Big Picture, India’s World)",
+        "PRS Budget & Bill Summaries",
+        
+        # Current Affairs / CA Analysis
+        "Vision IAS Current Affairs Magazine (monthly)",
+        "InsightsIAS Current Affairs",
+        "ForumIAS 9 PM Brief",
+        "ClearIAS (website + app)",
+        "Drishti IAS (Hindi + English)",
+        
+        # Mock Tests / Practice
+        "UPSC Official Past Year Papers",
+        "Vision IAS Test Series",
+        "InsightsIAS Prelims Test Series",
+        "ClearIAS Online Prelims Test",
+        
+        # Video / Lectures
+        "Unacademy UPSC (optional paid)",
+        "BYJU’s IAS Prep",
+        "StudyIQ Current Affairs",
+        
+        # Notes / Summaries
+        "Mrunal (Economy & Budget/Survey videos)",
+        "IAS Baba Daily Quiz & TLP program",
+        "Shankar IAS Environment Notes"
+        
+        },
+        "SSC/Banking": {
+"Global": [
+        # Quantitative Aptitude
+        "Quantitative Aptitude – R.S. Aggarwal",
+        "Fast Track Objective Arithmetic – Rajesh Verma",
+        "Magical Book on Quicker Maths – M. Tyra",
+        
+        # Reasoning
+        "A Modern Approach to Verbal & Non-Verbal Reasoning – R.S. Aggarwal",
+        "Analytical Reasoning – M.K. Pandey",
+        
+        # English
+        "Objective General English – S.P. Bakshi",
+        "Plinth to Paramount – Neetu Singh",
+        "Word Power Made Easy – Norman Lewis",
+        "High School English Grammar & Composition – Wren & Martin (for basics)",
+        
+        # General Awareness (SSC focus)
+        "Lucent’s General Knowledge",
+        "Manorama Yearbook (factual updates)",
+        "NCERTs (Polity, History, Geography basics)",
+        
+        # Banking / Economy Awareness
+        "Banking Awareness – Arihant",
+        "Static GK & Banking Current Affairs – Disha / Kiran Publications",
+        "Indian Economy & Banking – Ramesh Singh (optional reference)",
+        
+        # Previous Year Papers
+        "Kiran’s SSC Previous Year Question Bank",
+        "Arihant’s SSC/Banking 25+ Years Papers"
+    ],
+
+    "Online": [
+        # Official / Government
+        "SSC Official Website (ssc.nic.in)",
+        "IBPS Official Website (ibps.in)",
+        "SBI Careers (sbi.co.in/careers)",
+        "RBI Official Website",
+        
+        # Current Affairs / GK
+        "AffairsCloud (monthly CA PDFs)",
+        "Gradeup / BYJU’s Exam Prep",
+        "Oliveboard (Banking + SSC mock tests)",
+        "Testbook (mock tests + quizzes)",
+        "BankersAdda (Adda247 – daily GK & banking awareness)",
+        
+        # Mock Tests / Practice
+        "PracticeMock (SSC + Banking Mocks)",
+        "Testbook SSC CGL & Banking Packs",
+        "Career Power Online Mocks",
+        
+        # YouTube / Free Lectures
+        "Unacademy SSC & Banking",
+        "StudyIQ SSC/Banking",
+        "WiFiStudy (SSC/Banking classes)",
+        "Mahendras YouTube Channel (Banking)",
+        
+        # Notes & Summaries
+        "GKToday (static GK + daily quizzes)",
+        "AffairsCloud Daily Current Affairs",
+        "Gradeup PDF notes"
+        }
     }
-
-    data = rec[exam_key]
-
-    # Apply subject filter if provided
-    if subjects:
-        result = {}
-        for sub in subjects:
-            for k, v in data.items():
-                if k.lower() == sub.lower():
-                    result[label_map.get(k, k)] = v
-        return {exam_key: result}
-
-    # Otherwise, return full mapped dictionary
-    return {exam_key: {label_map.get(k, k): v for k, v in data.items()}}
-
+    base = rec.get(exam, {"Global": ["Standard Textbooks"], "Online": ["Online resources"]})
+    return base
 
 def save_pdf_report(filename, profile, roadmap, nlp_responses, cv_placeholder, resources, mock_scores):
     pdf = FPDF()
@@ -518,23 +623,20 @@ def save_pdf_report(filename, profile, roadmap, nlp_responses, cv_placeholder, r
     pdf.set_font("Arial", "B", 14)
     pdf.cell(0, 10, "EduGuide AI - Personalized Roadmap", ln=True, align="C")
     pdf.ln(4)
-
-    # profile
     pdf.set_font("Arial", "", 11)
+    # profile
     pdf.cell(0, 7, f"Name: {profile.get('name','-')}  |  Exam: {profile.get('exam','-')}  |  Generated: {datetime.datetime.now().date()}", ln=True)
     pdf.ln(3)
-
-    # study plan
     pdf.set_font("Arial", "B", 12)
     pdf.cell(0, 7, "Study Plan (First 7 days preview):", ln=True)
     pdf.set_font("Arial", "", 11)
+    # show first 7 days
     days = list(roadmap.keys())
     for d in days[:7]:
         pdf.multi_cell(0, 6, d + ":")
         for item in roadmap[d]:
             pdf.multi_cell(0, 6, f"  - {item['subject']}: {item['topic']} ({item['hours']} hrs)")
     pdf.ln(3)
-
     # NLP
     pdf.set_font("Arial", "B", 12)
     pdf.cell(0, 7, "AI Suggestions (from your doubts):", ln=True)
@@ -542,7 +644,6 @@ def save_pdf_report(filename, profile, roadmap, nlp_responses, cv_placeholder, r
     for r in nlp_responses:
         pdf.multi_cell(0, 6, f"- {r}")
     pdf.ln(3)
-
     # resources
     pdf.set_font("Arial", "B", 12)
     pdf.cell(0, 7, "Recommended Resources:", ln=True)
@@ -553,56 +654,33 @@ def save_pdf_report(filename, profile, roadmap, nlp_responses, cv_placeholder, r
     for r in resources.get("Online", []):
         pdf.multi_cell(0, 6, f"- {r}")
     pdf.ln(3)
-
     # mock scores summary
     pdf.set_font("Arial", "B", 12)
     pdf.cell(0, 7, "Mock Test Scores (history):", ln=True)
-
-    def feedback(score):
-        if score < 40:
-            return ("Needs serious improvement. Focus on weak areas and revise basics.", (255, 0, 0))  # Red
-        elif score < 60:
-            return ("Average performance. Revise mistakes and practice more PYQs.", (255, 140, 0))  # Orange
-        elif score < 80:
-            return ("Good progress! Work on time management and accuracy.", (0, 0, 255))  # Blue
-        elif score < 90:
-            return ("Very good! Just polish concepts and focus on silly mistakes.", (0, 100, 0))  # Dark Green
-        else:
-            return ("Excellent performance! Maintain consistency and keep practicing.", (0, 200, 0))  # Bright Green
-
     pdf.set_font("Arial", "", 11)
     if mock_scores:
         for m in mock_scores:
-            msg, color = feedback(m['score'])
-            pdf.set_text_color(*color)
-            pdf.multi_cell(0, 6, f"- {m['date']}: {m['score']}% → {msg}")
-            pdf.set_text_color(0, 0, 0)  # reset back to black
+            pdf.multi_cell(0, 6, f"- {m['date']}: {m['score']}%")
     else:
         pdf.multi_cell(0, 6, "No mock tests recorded.")
-
-    # disclaimer
     pdf.ln(6)
     pdf.set_font("Arial", "I", 9)
-    pdf.set_text_color(100, 100, 100)
-    pdf.multi_cell(0, 6, "Disclaimer: This roadmap is an educational guideline generated by the EduGuide AI. It is not a substitute for a certified mentor.")
-    pdf.set_text_color(0, 0, 0)
-
+    pdf.multi_cell(0, 6, "Disclaimer: This roadmap is an educational guideline generated by the EduGuide AI prototype. It is not a substitute for a certified mentor.")
     pdf.output(filename)
-
 
 # -------------------
 # Streamlit UI
 # -------------------
 st.set_page_config(page_title="EduGuide AI - Smart Exam Mentor", layout="wide")
-st.title("                     ヾ(•ω•`)o EduGuide AI —                     ")
-st.markdown("Your Personal Mentor, Here to assist your every need possible.")
+st.title("🎯 EduGuide AI — Smart Exam Mentor (Prototype)")
+st.markdown("Personalized roadmaps, simple NLP doubt solver, progress tracker. Educational demo.")
 
 # Left - profile & plan
 col1, col2 = st.columns([2,1])
 with col1:
     st.header("Create your personalized roadmap")
     name = st.text_input("Your name")
-    exam = st.selectbox("Which exam are you preparing for?", ["JEE", "NEET", "UPSC", "SSC/Banking", "Olympiads", "Other"])
+    exam = st.selectbox("Which exam are you preparing for?", ["JEE", "NEET", "UPSC", "SSC/Banking", "Other"])
     subjects_input = st.text_input("Subjects (comma separated). e.g. Physics,Chemistry,Maths")
     subjects = [s.strip() for s in subjects_input.split(",") if s.strip()] if subjects_input else []
     weak_input = st.text_input("Weak subjects/topics (comma separated). e.g. Organic,Algebra")
@@ -628,7 +706,7 @@ with col1:
                 st.markdown(f"- {item['subject']} — {item['topic']} ({item['hours']} hrs)")
 
 with col2:
-    st.header("Doubt Solver")
+    st.header("Doubt Solver (NLP)")
     question = st.text_area("Ask a study question (e.g. 'How to manage time for JEE?')", height=120)
     if st.button("Get Suggestion"):
         if question.strip() == "":
@@ -646,7 +724,7 @@ st.markdown("---")
 col3, col4 = st.columns([2,1])
 with col3:
     st.header("Recommended Resources")
-    chosen_exam = st.selectbox("Select exam to get recommended resources", ["JEE","NEET","UPSC","SSC/Banking","Olympiads","Other"], index=0)
+    chosen_exam = st.selectbox("Select exam to get recommended resources", ["JEE","NEET","UPSC","SSC/Banking","Other"], index=0)
     recs = recommend_resources(chosen_exam, [])
     st.write("*Books / Offline*")
     for r in recs.get("Global", []):
@@ -680,19 +758,3 @@ if st.button("Generate PDF Report"):
     save_pdf_report(filename, profile, roadmap, nlp_ans, None, recs, mock_scores)
     st.success(f"PDF saved as {filename} in the project folder.")
     st.markdown("Open the file in your project folder to print or submit.")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
