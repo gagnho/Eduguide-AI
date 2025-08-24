@@ -476,7 +476,8 @@ def recommend_resources(exam, subjects):
         "Arihant 40 Days Crash Course (for revision)",
         "Previous 15–20 Years NEET Question Papers"
         
-    ],
+    ]
+        },
         "UPSC": {
  "Global": [
         # NCERT Basics (Compulsory for Foundation)
@@ -757,6 +758,7 @@ if st.button("Generate PDF Report"):
     save_pdf_report(filename, profile, roadmap, nlp_ans, None, recs, mock_scores)
     st.success(f"PDF saved as {filename} in the project folder.")
     st.markdown("Open the file in your project folder to print or submit.")
+
 
 
 
