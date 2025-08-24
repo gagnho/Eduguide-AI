@@ -385,7 +385,7 @@ def nlp_answer(question):
             if key in q:
                 responses.append(SYMBOLIC_FAQ.get("how to remember") if key == "remember" else SYMBOLIC_FAQ.get("time management"))
     if not responses:
-        responses = ["I could not find an exact match. Try asking about study strategy, time management, revision, or specific subject topics."]
+        responses = ["That is a cool question , you would never ask that if you never studied anything. If you are asking this question that means you are hardorking. I hope the best for you. Do your best and find this out yourself"]
     return responses
 
 def recommend_resources(exam, subjects):
@@ -760,6 +760,7 @@ if st.button("Generate PDF Report"):
     save_pdf_report(filename, profile, roadmap, nlp_ans, None, recs, mock_scores)
     st.success(f"PDF saved as {filename} in the project folder.")
     st.markdown("Open the file in your project folder to print or submit.")
+
 
 
 
